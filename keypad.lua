@@ -258,18 +258,18 @@ function ShowKeypad(area, door, lastKey, nextState)
             elseif IsDisabledControlJustPressed(0, 24) then
                 -- Citizen.Trace(cursorX..'/'..cursorY.."\n")
                 if action then
-                    local resultArray = action(code)
-                    local result = ''
-                    for k, v in pairs(resultArray) do
-                        result = result..v
-                    end
-                    if (type(result) == 'string') then
-                        code = result
-                        code = string.sub(code,-4)
-                    elseif (type(result) == 'boolean') then
+                    local actionResult = action(code)
+                    if (type(actionResult) == 'boolean') then
                         setLastKey(area, door, code)
                         TriggerServerEvent('demmylock:entered-pin', area, door, code, not result)
                         visible = false
+                    else
+                        local result = ''
+                        for k, v in pairs(resultArray) do
+                            result = result..v
+                        end
+                        
+                        code = string.sub(result,-4)
                     end
                 end
             elseif IsDisabledControlJustPressed(0, 51) then
