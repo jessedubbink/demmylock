@@ -1,11 +1,14 @@
 local visible = false
+local charIndex = 0
+local code = {"_", "_", "_", "_"}
 
 local BUTTONS = {
     key_1 = {
         at = vector2(0.4555,0.542),
         size = vector2(0.025,0.025),
         action = function(code)
-            code = code .. '1'
+            code[charIndex] = '1'
+            charIndex = charIndex + 1
             return code
         end,
     },
@@ -13,7 +16,8 @@ local BUTTONS = {
         at = vector2(0.4855, 0.542),
         size = vector2(0.025, 0.025),
         action = function(code)
-            code = code .. '2'
+            code[charIndex] = '2'
+            charIndex = charIndex + 1
             return code
         end,
     },
@@ -21,7 +25,8 @@ local BUTTONS = {
         at = vector2(0.5145, 0.542),
         size = vector2(0.025, 0.025),
         action = function(code)
-            code = code .. '3'
+            code[charIndex] = '3'
+            charIndex = charIndex + 1
             return code
         end,
     },
@@ -29,6 +34,8 @@ local BUTTONS = {
         at = vector2(0.5445, 0.542),
         size = vector2(0.025, 0.025),
         action = function(code)
+            charIndex = 0
+            code = {"_", "_", "_", "_"}
             return false
         end,
     },
@@ -36,7 +43,8 @@ local BUTTONS = {
         at = vector2(0.4555, 0.593),
         size = vector2(0.025,0.025),
         action = function(code)
-            code = code .. '4'
+            code[charIndex] = '4'
+            charIndex = charIndex + 1
             return code
         end,
     },
@@ -44,7 +52,8 @@ local BUTTONS = {
         at = vector2(0.4855, 0.593),
         size = vector2(0.025, 0.025),
         action = function(code)
-            code = code .. '5'
+            code[charIndex] = '5'
+            charIndex = charIndex + 1
             return code
         end,
     },
@@ -52,7 +61,8 @@ local BUTTONS = {
         at = vector2(0.5145, 0.593),
         size = vector2(0.025, 0.025),
         action = function(code)
-            code = code .. '6'
+            code[charIndex] = '6'
+            charIndex = charIndex + 1
             return code
         end,
     },
@@ -60,6 +70,8 @@ local BUTTONS = {
         at = vector2(0.5445, 0.593),
         size = vector2(0.025, 0.025),
         action = function(code)
+            charIndex = 0
+            code = {"_", "_", "_", "_"}
             return true
         end,
     },
@@ -67,7 +79,8 @@ local BUTTONS = {
         at = vector2(0.4555, 0.642),
         size = vector2(0.025,0.025),
         action = function(code)
-            code = code .. '7'
+            code[charIndex] = '7'
+            charIndex = charIndex + 1
             return code
         end,
     },
@@ -75,7 +88,8 @@ local BUTTONS = {
         at = vector2(0.4855, 0.642),
         size = vector2(0.025, 0.025),
         action = function(code)
-            code = code .. '8'
+            code[charIndex] = '8'
+            charIndex = charIndex + 1
             return code
         end,
     },
@@ -83,7 +97,8 @@ local BUTTONS = {
         at = vector2(0.5145, 0.642),
         size = vector2(0.025, 0.025),
         action = function(code)
-            code = code .. '9'
+            code[charIndex] = '9'
+            charIndex = charIndex + 1
             return code
         end,
     },
@@ -91,7 +106,10 @@ local BUTTONS = {
         at = vector2(0.5445, 0.642),
         size = vector2(0.025, 0.025),
         action = function(code)
-            code = string.sub(code, 1, -2)
+            if charIndex > 0 then
+                charIndex = charIndex - 1
+            end
+            code[charIndex] = '_'
             return code
         end,
     },
@@ -99,7 +117,8 @@ local BUTTONS = {
         at = vector2(0.4555, 0.693),
         size = vector2(0.025,0.025),
         action = function(code)
-            code = code .. '*'
+            code[charIndex] = '*'
+            charIndex = charIndex + 1
             return code
         end,
     },
@@ -107,7 +126,8 @@ local BUTTONS = {
         at = vector2(0.4855, 0.693),
         size = vector2(0.025, 0.025),
         action = function(code)
-            code = code .. '0'
+            code[charIndex] = '0'
+            charIndex = charIndex + 1
             return code
         end,
     },
@@ -115,7 +135,8 @@ local BUTTONS = {
         at = vector2(0.5145, 0.693),
         size = vector2(0.025, 0.025),
         action = function(code)
-            code = code .. '#'
+            code[charIndex] = '#'
+            charIndex = charIndex + 1
             return code
         end,
     },
@@ -123,7 +144,46 @@ local BUTTONS = {
         at = vector2(0.5445, 0.693),
         size = vector2(0.025, 0.025),
         action = function(code)
+            charIndex = 0
+            code = {"_", "_", "_", "_"}
             return ''
+        end,
+    },
+    -- Calculate the specific y and size when I get home :)
+    key_char1 = {
+        at = vector2(0.4555,0.500),
+        size = vector2(0.025,0.025),
+        action = function(code)
+            charIndex = 1
+            code[charIndex] = '_'
+            return code
+        end,
+    },
+    key_char2 = {
+        at = vector2(0.4855, 0.500),
+        size = vector2(0.025, 0.025),
+        action = function(code)
+            charIndex = 2
+            code[charIndex] = '_'
+            return code
+        end,
+    },
+    key_char3 = {
+        at = vector2(0.5145, 0.500),
+        size = vector2(0.025, 0.025),
+        action = function(code)
+            charIndex = 3
+            code[charIndex] = '_'
+            return code
+        end,
+    },
+    key_char4 = {
+        at = vector2(0.5445, 0.500),
+        size = vector2(0.025, 0.025),
+        action = function(code)
+            charIndex = 4
+            code[charIndex] = '_'
+            return code
         end,
     },
 }
@@ -198,7 +258,11 @@ function ShowKeypad(area, door, lastKey, nextState)
             elseif IsDisabledControlJustPressed(0, 24) then
                 -- Citizen.Trace(cursorX..'/'..cursorY.."\n")
                 if action then
-                    local result = action(code)
+                    local resultArray = action(code)
+                    local result = ''
+                    for k, v in pairs(resultArray) do
+                        result = result..v
+                    end
                     if (type(result) == 'string') then
                         code = result
                         code = string.sub(code,-4)
